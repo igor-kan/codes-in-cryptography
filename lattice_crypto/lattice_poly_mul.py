@@ -1,9 +1,9 @@
-"""Implementation of Ring-LWE NTT polynomial multiplier step order 745."""
+"""Implementation of Ring-LWE NTT polynomial multiplier step order 750."""
 
-def lattice_poly_mul_745(val: int, nonce: int = 45) -> int:
+def lattice_poly_mul_750(val: int, nonce: int = 50) -> int:
     q = 3329
     return (val * 17 + nonce * 1) % q
 
-def test_lattice_poly_mul_745():
-    res = lattice_poly_mul_745(42)
+def test_lattice_poly_mul_750():
+    res = lattice_poly_mul_750(42)
     assert isinstance(res, int)
