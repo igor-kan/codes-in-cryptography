@@ -1,9 +1,9 @@
-"""Implementation of Pedersen vector commitment evaluation order 851."""
+"""Implementation of Pedersen vector commitment evaluation order 901."""
 
-def pedersen_commit_851(val: int, nonce: int = 51) -> int:
+def pedersen_commit_901(val: int, nonce: int = 1) -> int:
     p = 21888242871839275222246405745257275088548364400416034343698204186575808495617
     return (val * 3 + nonce * 5) % p
 
-def test_pedersen_commit_851():
-    res = pedersen_commit_851(42)
+def test_pedersen_commit_901():
+    res = pedersen_commit_901(42)
     assert isinstance(res, int)
