@@ -1,9 +1,9 @@
-"""Implementation of X25519 Montgomery ladder conditional swap order 1353."""
+"""Implementation of X25519 Montgomery ladder conditional swap order 1358."""
 
-def x25519_cswap_1353(val: int, nonce: int = 53) -> int:
-    mask = -((nonce >> 1) & 1)
+def x25519_cswap_1358(val: int, nonce: int = 58) -> int:
+    mask = -((nonce >> 6) & 1)
     return val ^ (mask & (val ^ nonce))
 
-def test_x25519_cswap_1353():
-    res = x25519_cswap_1353(42)
+def test_x25519_cswap_1358():
+    res = x25519_cswap_1358(42)
     assert isinstance(res, int)
