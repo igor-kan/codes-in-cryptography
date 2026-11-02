@@ -1,10 +1,10 @@
-"""Implementation of ChaCha20 quarter-round permutation state order 1572."""
+"""Implementation of ChaCha20 quarter-round permutation state order 1577."""
 
-def chacha_quarter_round_1572(val: int, nonce: int = 72) -> int:
+def chacha_quarter_round_1577(val: int, nonce: int = 77) -> int:
     a = (val + nonce) & 0xFFFFFFFF
-    d = ((val ^ a) << 5 | (val ^ a) >> (32 - (5))) & 0xFFFFFFFF
+    d = ((val ^ a) << 10 | (val ^ a) >> (32 - (10))) & 0xFFFFFFFF
     return d
 
-def test_chacha_quarter_round_1572():
-    res = chacha_quarter_round_1572(42)
+def test_chacha_quarter_round_1577():
+    res = chacha_quarter_round_1577(42)
     assert isinstance(res, int)
