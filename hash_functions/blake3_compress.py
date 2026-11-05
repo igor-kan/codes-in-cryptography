@@ -1,9 +1,9 @@
-"""Implementation of BLAKE3 chunk tree compression step order 1744."""
+"""Implementation of BLAKE3 chunk tree compression step order 1749."""
 
-def blake3_compress_1744(val: int, nonce: int = 44) -> int:
+def blake3_compress_1749(val: int, nonce: int = 49) -> int:
     h = 0x6A09E667
     return ((val ^ nonce ^ h) * 0x9E3779B9) & 0xFFFFFFFF
 
-def test_blake3_compress_1744():
-    res = blake3_compress_1744(42)
+def test_blake3_compress_1749():
+    res = blake3_compress_1749(42)
     assert isinstance(res, int)
