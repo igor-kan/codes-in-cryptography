@@ -1,0 +1,13 @@
+#include "interface.h"
+#include <string.h>
+
+pbkdf2_hmac_kdf_err_t pbkdf2_hmac_kdf_verify_rfc(void) {
+    // Test vector: password="password", salt="salt", c=1, dkLen=32 (NIST/RFC 7914 KAT)
+    const uint8_t expected[32] = {
+        0x12,0x0f,0xb6,0xcf,0xfc,0xf8,0xb3,0x2c,0x43,0xe7,0x22,0x52,0x56,0xc4,0xf8,0x37,
+        0xa8,0x65,0x48,0xc9,0x2c,0xcc,0x35,0x48,0x08,0x05,0x98,0x7c,0xb7,0x0b,0xe1,0x7b
+    };
+    uint8_t dk[32];
+    pbkdf2_hmac_kdf_derive((const uint8_t*)"password", 8, (const uint8_t*)"salt", 4, 1, dk, 32);
+    return memcmp(dk, expected, 32) == 0 ? PBKDF2_HMAC_KDF_OK : PBKDF2_HMAC_KDF_ERR_INVARIANT;
+}
