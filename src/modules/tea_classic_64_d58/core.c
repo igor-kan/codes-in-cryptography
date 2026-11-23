@@ -1,0 +1,25 @@
+#include "interface.h"
+#include <math.h>
+#include <string.h>
+
+void tea_encrypt(uint32_t v[2], const uint32_t k[4]) {
+    uint32_t v0 = v[0], v1 = v[1], sum = 0;
+    const uint32_t delta = 0x9E3779B9u;
+    for (int i = 0; i < 32; ++i) {
+        sum += delta;
+        v0 += ((v1 << 4) + k[0]) ^ (v1 + sum) ^ ((v1 >> 5) + k[1]);
+        v1 += ((v0 << 4) + k[2]) ^ (v0 + sum) ^ ((v0 >> 5) + k[3]);
+    }
+    v[0] = v0; v[1] = v1;
+}
+
+void tea_decrypt(uint32_t v[2], const uint32_t k[4]) {
+    uint32_t v0 = v[0], v1 = v[1], sum = 0xC6EF3720u;
+    const uint32_t delta = 0x9E3779B9u;
+    for (int i = 0; i < 32; ++i) {
+        v1 -= ((v0 << 4) + k[2]) ^ (v0 + sum) ^ ((v0 >> 5) + k[3]);
+        v0 -= ((v1 << 4) + k[0]) ^ (v1 + sum) ^ ((v1 >> 5) + k[1]);
+        sum -= delta;
+    }
+    v[0] = v0; v[1] = v1;
+}
